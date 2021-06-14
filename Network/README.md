@@ -36,11 +36,11 @@
 
 ##### TCP receive data from target  
 	
-	response = s.recv(1024)  
+	s.recv(buffer)  
 
 ##### UDP receive data from target  
 
-	client, addr = s.recvfrom(1024)  
+	s.recvfrom(data,addr)  
 	
 
 # Server:
@@ -55,7 +55,7 @@
 
 ##### Accept incoming connection
 
-	s.accept() 
+	s.accept(data,addr) 
 
 	Accepts both response data and client addr object
 	
@@ -63,4 +63,7 @@
 
 	s.close()
 
+##### Set Timeout
+	
+	s.timeout()
 
