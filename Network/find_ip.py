@@ -4,8 +4,8 @@ import sys
 
 def findip(host):
 	handler = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        ip = socket.gethostbyname(host)
-        print("%s - %s" % (host,ip))
+	ip = socket.gethostbyname(host)
+       	print("%s - %s" % (host,ip))
 
 def usage():
 	print("""
@@ -29,7 +29,7 @@ try:
 
 	elif (options.domain):
 		host = options.domain
-		findip(host)
+		findip(host.rstrip())
 
 	elif(options.filename):
 		file = options.filename
@@ -38,7 +38,11 @@ try:
 			for host in hosts:
 				findip(host.rstrip())
 	else:
+		print(filename)
 		usage()
 
+
 except Exception as e:
+	
+	print(e)
 	usage()
