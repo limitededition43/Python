@@ -53,6 +53,12 @@
 
 	s.listen(5)  
 
+##### Accept incoming connection
+
+	s.accept() 
+
+	Accepts both response data and client addr object
+	
 ##### Close connection
 
 	s.close()
