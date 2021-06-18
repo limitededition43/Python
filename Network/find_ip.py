@@ -3,9 +3,8 @@ from optparse import OptionParser
 import sys
 
 def findip(host):
-	handler = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	ip = socket.gethostbyname(host)
-       	print("%s - %s" % (host,ip))
+       	print("[%s]\t - \t[%s]" % (ip,host))
 
 def usage():
 	print("""
@@ -36,13 +35,13 @@ try:
 		with open(file) as f:
 			hosts = f.readlines()
 			for host in hosts:
-				findip(host.rstrip())
+				findip(host.strip())
 	else:
 		print(filename)
 		usage()
 
 
+except socket.gaierror:
+	pass
 except Exception as e:
-	
-	print(e)
 	usage()
