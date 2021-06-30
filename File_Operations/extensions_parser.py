@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 # -*- coding: utf-8 -*-
 
 import xlrd
@@ -35,17 +35,12 @@ try:
             return str(rans[0])
 
 
-    def extractor(
-        s1,
-        s2,
-        s3,
-        s4,
-        ):
-        for (item, desc) in zip(s1.col_values(1), s1.col_values(2)):
+    def extractor(s1,s2,s3,s4):
+
+        for (item, desc) in zip(s1.col_values(1), s1.col_values(2)) :
             item = str(item.encode('utf-8'))[18:]
             desc = str(desc.encode('utf-8'))
-            dict1 = dict({item: desc})
-            Extension.update(dict1)
+            Extension.update(dict({item:desc}))
 
         for (item, desc) in zip(s2.col_values(1), s1.col_values(2)):
             item = str(item.encode('utf-8'))
@@ -54,24 +49,16 @@ try:
 
         for i in range(s3.nrows):
             item = repr(s3.cell(i, 1).value)
-
-            # item = (item).replace("u'*","")
-            # item = (item).replace("u'","")
-            # item = (item).replace("'","")
-
             item = str(item).rsplit('.', 1)[-1]
             item = str(item)[:-1]
-
-            # item = item.replace("u'","")
-
             if item in Extension.keys():
                 continue
             Extension.update(dict({item: 'Unidentified'}))
 
         for (item, desc) in zip(s4.col_values(1), s4.col_values(2)):
             item = str(item.encode('utf-8'))
-        desc = str(desc.encode('utf-8'))
-        Extension.update(dict({item: desc}))
+            desc = str(desc.encode('utf-8'))
+            Extension.update(dict({item: desc}))
 
 
     def csv_exporter(data):
@@ -99,9 +86,9 @@ try:
                             extension_check(ext)[0],
                             extension_check(ext)[1]])
 	csv_exporter(rows)
-	print("[+] File Successfully written to %soutput.csv" % Path)
+	print "[+] File Successfully written to %soutput.csv" % Path
         json_exporter(rows)
-	print("[+] File Successfully writter to %soutput.json" % Path)
+	print "[+] File Successfully writter to %soutput.json" % Path
 
     main()
 
